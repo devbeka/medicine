@@ -75,7 +75,15 @@ const isFormIncomplete = computed(() => {
     store.receptionPath,
     store.dosage,
     store.numbersSeanse,
-  ].some((value) => value === '')
+  ].some((value) => {
+    if (typeof value === 'string') {
+      return value.trim() === ''
+    } else if (Array.isArray(value)) {
+      return value.length === 0
+    } else {
+      return true
+    }
+  })
 })
 </script>
 

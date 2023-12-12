@@ -40,7 +40,11 @@ const isFormIncomplete = computed(() => {
     store.dryWeight,
     store.activeAnticoagulation,
     store.activeVolumeEd,
-  ].some((value) => value === '' || null)
+  ].some(
+    (value) =>
+      typeof value !== 'number' &&
+      (value === null || value === undefined || value.trim() === '')
+  )
 })
 </script>
 

@@ -7,7 +7,7 @@
   <button :disabled="isFormIncomplete" @click="store.add" class="add">
     Добавить
   </button>
-  
+
   <ul v-if="store.atHome.length > 0" class="block">
     <h4>Лечение на дому</h4>
     <li class="block__content" v-for="(home, i) in store.atHome" :key="i">
@@ -37,7 +37,11 @@ const isFormIncomplete = computed(() => {
     store.receptionPath,
     store.dosage,
     store.time,
-  ].some((value) => value === '')
+  ].some(
+    (value) =>
+      typeof value !== 'number' &&
+      (value === null || value === undefined || value.trim() === '')
+  )
 })
 </script>
 
